@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>Product</h3>
+<p>
+    <a th:href="@{/create}">
+        Add new product
+    </a>
+</p>
+
+<table id = "customers">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Mota</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row,rowStat : ${list}">
+        <td th:text="${row.id}"></td>
+        <td th:text="${row.name}"></td>
+        <td th:text="${row.price}"></td>
+        <td th:text="${row.mota}"></td>
+        <td><a th:href="@{/edit/{index}(index=${rowStat.index})}">edit</a></td>
+        <td><a th:href="@{/delete/{index}(index=${rowStat.index})}">delete</a></td>
+        <!--        thuộc tính th:herf khai bao link trong the a
+                    thuộc tính th:if de khai bao dieu kien
+                    thuộc tính th:each tuong duong vong lap for each
+                    thuộc tính th:text the duoi dang du lieu nhap
+                    ${cus}danh sách truyền sang bởi controller là đối tượng được lặp
+                    row đại diện cho 1 đối tượng tại vòng lặp
+                    row Stat là biến trạng thái giúp ta theo dõi vòng lặp
+                    ${} biểu thức đánh giá biến}-->
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
